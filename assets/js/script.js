@@ -1,3 +1,4 @@
+//this is the Movie API, its currently set to grab information on avengers infinity war for reference.
 const settings = {
 	"async": true,
 	"crossDomain": true,
