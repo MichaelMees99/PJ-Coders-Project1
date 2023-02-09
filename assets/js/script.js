@@ -29,3 +29,14 @@ fetch(apiUrl)
 
 fetchButton.addEventListener('click', getApi);
 
+<iframe
+  width="600"
+  height="450"
+  style="border:0"
+  loading="lazy"
+  allowfullscreen
+  referrerpolicy="no-referrer-when-downgrade"
+  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAcJ_ZgPmCRzYlGxHMwD1kTlPGvBGDM8sg
+    &q=Space+Needle,Seattle+WA">
+</iframe>
+console.log(data)
