@@ -5,13 +5,23 @@
 }
 
 body {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  margin: 0;
   color: aliceblue;
   background-color: #222222;
 
 }
 
-header {
-  background-image: url('');
+.header {
+  background-image: url('../images/s-l1600.jpg');
+  background-size: cover;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 h1 {
@@ -114,6 +124,71 @@ p {
 :root {
   --primary-color: #22254b;
   --secondary-color: #373b69;
+}
 
+main {
+  display: flex;
+  flex-wrap: wrap;
+}
 
+.book {
+  width: 300px;
+  margin: 1rem;
+  background-color: var(--secondary-color);
+  box-shadow: 0 4px 5px black;
+  position: relative
+}
+
+.book img {
+  width: 100%;
+}
+
+.book-info{
+  color:cornsilk;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 1rem 1rem;
+  letter-spacing: .5px;
+}
+
+.book-info h3 {
+  margin-top: 0;
+}
+
+.book-info span {
+  background-color: var(--primary-color);
+  padding: 0.25rem 0.5rem;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.book-info span.green {
+  color: green;
+}
+
+.book-info span.orange {
+  color: orange;
+}
+
+.book-info span.red {
+  color: red;
+}
+
+.overview {
+  background-color: white;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  max-height: 100%;
+  transform: translateY(101%);
+  
+  opacity: 0%;
+}
+
+.book:hover .overview {
+  transform: translateY(0);
+  opacity: 100%;
 }
