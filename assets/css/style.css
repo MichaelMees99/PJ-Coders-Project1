@@ -184,9 +184,11 @@ main {
   right: 0;
   max-height: 100%;
   transform: translateY(101%);
-  transition: transform 0.3s ease-in;
+  
+  opacity: 0%;
 }
 
 .book:hover .overview {
   transform: translateY(0);
+  opacity: 100%;
 }

@@ -25,6 +25,7 @@
         <li><a class="menu__item" href="near-you.html">Find Stores</a></li>
       </ul>
   </div>
+  
 
   <div class="header">
     <h1>Welcome to PJ Books!</h1>
@@ -37,32 +38,39 @@
     <tbody id="repo-table" class="mx-auto text-center"></tbody>
   </table>
 
-  <main id="main">
-    <div class="book">
-      <img src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
-      <div class="book-info">
-        <h3>Book Title</h3>
-        <span class="green">9.8</span>
-      </div>
-      <div class="overview">
-        <h3>Overview</h3>
-        Movie summary here.
-      </div>
-
-      <div class="book">
-        <img src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
-        <div class="book-info">
-          <h3>Book Title</h3>
-          <span class="green">9.8</span>
+  <main class="flex-row justify-space-between">
+    <main class="flex-row justify-space-between">
+      <div class="col-12 col-md-4">
+  
+        <div class="card">
+          <h3 class="card-header text-uppercase">Search By Title</h3>
+          <form id="book-form" class="card-body">
+            <label class="form-label" for="title">Title</label>
+            <input name="title" id="title" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="btn">Get User</button>
+          </form>
         </div>
-        <div class="overview">
-          <h3>Overview</h3>
-          Movie summary here.
+  
+        <div class="card">
+          <h3 class="card-header text-uppercase">Search By Genre</h3>
+          <div id="genre-buttons" class="card-body">
+            <!-- These data-attribute values will be used to search for repositories when a button is clicked. -->
+            <button data-genre="Fiction" class="btn">Fiction</button>
+            <button data-genre="Fantasy" class="btn">Fantasy</button>
+            <button data-genre="Romance" class="btn">Romance</button>
+          </div>
         </div>
-
+      </div>
+  
+      <div class="col-12 col-md-8">
+        <h2 class="subtitle">Showing Titles with: <span id="book-search-term"></span></h2>
+        <!-- There needs to be an empty HTML element for us to write repository data to. -->
+        <div id="book-container" class="list-group"></div>
+      </div>
+    
         <div class="book">
-          <img src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
-          <div class="book-info">
+          <img id="book-image" src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
+          <div id="book-title" class="book-info">
             <h3>Book Title</h3>
             <span class="green">9.8</span>
           </div>
@@ -71,47 +79,9 @@
             Movie summary here.
           </div>
 
-          <div class="book">
-            <img src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
-            <div class="book-info">
-              <h3>Book Title</h3>
-              <span class="green">9.8</span>
-            </div>
-            <div class="overview">
-              <h3>Overview</h3>
-              Movie summary here.
-            </div>
-
-            <div class="book">
-              <img src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
-              <div class="book-info">
-                <h3>Book Title</h3>
-                <span class="green">9.8</span>
-              </div>
-              <div class="overview">
-                <h3>Overview</h3>
-                Movie summary here.
-              </div>
-
-              <div class="book">
-                <img src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
-                <div class="book-info">
-                  <h3>Book Title</h3>
-                  <span class="green">9.8</span>
-                </div>
-                <div class="overview">
-                  <h3>Overview</h3>
-                  Movie summary here.
-                </div>
-          
-        
-
-
-
-
-
-
-  </div>
+    </div>
+  </main>
+  
 
 
 

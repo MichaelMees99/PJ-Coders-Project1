@@ -1,42 +1,56 @@
-var tableBody = document.getElementById('card-display');
-var fetchButton = document.getElementById('fetch-button');
-var apiUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:fiction&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM'
+var bookFormEl = document.querySelector('#user-form');
+var genreButtonsEl = document.querySelector('#genre-buttons');
+var titleInputEl = document.querySelector('#title');
+var bookContainerEl = document.querySelector('#book-container');
+var bookSearchTerm = document.querySelector('#book-search-term');
 
-fetch(apiUrl)
+
+var formSubmitHandler = function (event) {
+  event.preventDefault();
+
+  var bookName = titleInputEl.value.trim();
+
+  if (bookName) {
+    getBookTitles(bookName);
+
+    bookContainerEl.textContent = '';
+    titleInputEl.value = '';
+  } else {
+    alert('Please enter a book Title');
+  }
+};
+
+var buttonClickHandler = function (event) {
+  // `event.target` is a reference to the DOM element of what programming language button was clicked on the page
+  var language = event.target.getAttribute('data-language');
+
+  // If there is no language read from the button, don't attempt to fetch repos
+  if (language) {
+    getFeaturedRepos(language);
+
+    repoContainerEl.textContent = '';
+  }
+};
+
+var getBookTitles = function (bookTitle) {
+  var apiUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + bookTitle + '&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM';
+
+  fetch(apiUrl)
     .then(function (response) {
-      return response.json();
-    })
-    .then(function (data) {
-      console.log(data.items[0])
-      //Loop over the data to generate a table, each table row will have a link to the repo url
-      for (var i = 0; i < data.length; i++) {
-        // Creating elements, tablerow, tabledata, and anchor
-        var createTableRow = document.createElement('tr');
-        var tableData = document.createElement('td');
-        var link = document.createElement('a');
-
-        // Setting the text of link and the href of the link
-        link.textContent = data.items[i].html_url;
-        link.href = data[i].html_url;
-
-        // Appending the link to the tabledata and then appending the tabledata to the tablerow
-        // The tablerow then gets appended to the tablebody
-        tableData.appendChild(link);
-        createTableRow.appendChild(tableData);
-        tableBody.appendChild(createTableRow);
+      if (response.ok) {
+        console.log(response);
+        response.json().then(function (data) {
+          console.log(data);
+          //displayBooks(data, bookTitle);
+        });
+      } else {
+        alert('Error: ' + response.statusText);
       }
-});
+    })
+    .catch(function (error) {
+      alert('Unable to connect to GoogleBooks');
+    });
+};
 
-fetchButton.addEventListener('click', getApi);
-
-<iframe
-  width="600"
-  height="450"
-  style="border:0"
-  loading="lazy"
-  allowfullscreen
-  referrerpolicy="no-referrer-when-downgrade"
-  src="https://www.google.com/maps/embed/v1/place?key=AIzaSyAcJ_ZgPmCRzYlGxHMwD1kTlPGvBGDM8sg
-    &q=Space+Needle,Seattle+WA">
-</iframe>
-console.log(data)
+bookFormEl.addEventListener('submit', formSubmitHandler);
+genreButtonsEl.addEventListener('click', buttonClickHandler);
