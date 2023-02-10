@@ -1,13 +1,76 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css" integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
+    integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <title>PJ Books</title>
 </head>
+
 <body>
-    
+  <div class="hamburger-menu">
+    <input id="menu__toggle" type="checkbox" />
+    <label class="menu__btn" for="menu__toggle">
+      <span></span>
+    </label>
+    <ul class="menu__box">
+      <ul>
+        <li><a class="menu__item" href="#home">Home</a></li>
+        <li><a class="menu__item" href="read-later.html">Read Later</a></li>
+        <li><a class="menu__item" href="near-you.html">Find Stores</a></li>
+      </ul>
+  </div>
+
+  <div class="header">
+    <div class="header-text">
+      <h1>Welcome to PJ Books!
+      </h1>
+      <p>Here you will be able to search and save your favorite books! Scroll down or search to start exploring!</p>
+    </div>
+    <div class="container">
+      <div class="search">
+        <div class="searchTitle">
+          <form id="book-form" class="card-body">
+            <label class="title" for="title">Search By Title:</label>
+            <input id="title" type="text" autofocus="true" class="form-input" />
+            <button type="submit" class="searchBtn">Search</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <main class="flex-row justify-space-between">
+
+  </div>
+  <div class="col-12 col-md-8 center">
+    <h2 class="subtitle">Showing Titles with: <span id="book-search-term"></span></h2>
+    <!-- There needs to be an empty HTML element for us to write repository data to. -->
+    <div id="book-container" class="list-group"></div>
+  </div>
+
+  <div id="book" class="book">
+    <img id="book-image" src="https://m.media-amazon.com/images/I/41PZRSHF-NL.jpg" alt="">
+    <div id="book-title" class="book-info">
+      <h3>Book Title</h3>
+      <span class="green">9.8</span>
+    </div>
+    <div class="overview">
+      <h3>Overview</h3>
+      Movie summary here.
+    </div>
+
+  </div>
+  </main>
+
+
+
+
+  <script src="./assets/js/script.js"></script>
 </body>
+
 </html>
