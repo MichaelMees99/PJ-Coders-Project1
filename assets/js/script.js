@@ -26,7 +26,7 @@ var buttonClickHandler = function (event) {
 
   // If there is no language read from the button, don't attempt to fetch repos
   if (genre) {
-    getFeaturedBooks(genre);
+    getBookGenre(genre);
 
     repoContainerEl.textContent = '';
   }
@@ -50,6 +50,22 @@ var getBookTitles = function (bookTitle) {
     .catch(function (error) {
       alert('Unable to connect to GoogleBooks');
     });
+};
+
+var getBookGenre = function (genre) {
+  // The `q` parameter is what genre we want to query, the `+is:featured` flag adds a filter to return only featured repositories
+  // The `sort` parameter will instruct GitHub to respond with all of the repositories in order by the number of issues needing help
+  var apiUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genre + '&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM';
+
+  fetch(apiUrl).then(function (response) {
+    if (response.ok) {
+      response.json().then(function (data) {
+        displayBooks(data.items, genre);
+      });
+    } else {
+      alert('Error: ' + response.statusText);
+    }
+  });
 };
 
 var displayBooks = function (items, searchTerm) {
