@@ -22,11 +22,11 @@ var formSubmitHandler = function (event) {
 
 var buttonClickHandler = function (event) {
   // `event.target` is a reference to the DOM element of what programming language button was clicked on the page
-  var language = event.target.getAttribute('data-language');
+  var genre = event.target.getAttribute('data-genre');
 
   // If there is no language read from the button, don't attempt to fetch repos
-  if (language) {
-    getFeaturedRepos(language);
+  if (genre) {
+    getFeaturedBooks(genre);
 
     repoContainerEl.textContent = '';
   }
@@ -41,7 +41,7 @@ var getBookTitles = function (bookTitle) {
         console.log(response);
         response.json().then(function (data) {
           console.log(data);
-          //displayBooks(data, bookTitle);
+            displayBooks(data, bookTitle);
         });
       } else {
         alert('Error: ' + response.statusText);
@@ -52,5 +52,48 @@ var getBookTitles = function (bookTitle) {
     });
 };
 
+var displayBooks = function (items, searchTerm) {
+  if (items.length === 0) {
+    bookContainerEl.textContent = 'No books found.';
+    // Without a `return` statement, the rest of this function will continue to run and perhaps throw an error if `repos` is empty
+    return;
+  }
+
+  bookSearchTerm.textContent = searchTerm;
+
+  for (var i = 0; i < items.length; i++) {
+
+    var bookName = items[i].volumeInfo.title;
+    var bookImage = items[i].volumeInfo.imageLinks.thumbnail;
+    var bookAuthor = items[i].volumeInfo.authors[0];
+
+    var booksEl = document.createElement('div');
+    booksEl.classList = 'list-item flex-row justify-space-between align-center';
+
+    var imageEl = document.createElement('img');
+    imageEl.src = bookImage;
+
+    var titleEl = document.createElement('span');
+    titleEl.textContent = bookName;
+
+    booksEl.appendChild(titleEl);
+    booksEl.appendChild(imageEl);
+
+    var statusEl = document.createElement('span');
+    statusEl.classList = 'flex-row align-center';
+
+    booksEl.appendChild(statusEl);
+
+    bookContainerEl.appendChild(booksEl);
+  }
+};
 bookFormEl.addEventListener('submit', formSubmitHandler);
 genreButtonsEl.addEventListener('click', buttonClickHandler);
+
+//resources:
+//book title info: items[0].volumeInfo.title
+//book cover image: items[0].volumeInfo.imageLinks.thumbnail
+//book description: items[0].volumeInfo.description
+//book rating: items[0].volumeInfo.averageRating
+//book genre: items[0].volumeInfo.categories
+//book author: items[0].volumeInfo.authors[0]

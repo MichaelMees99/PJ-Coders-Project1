@@ -13,7 +13,7 @@ body {
 }
 
 .header {
-  background-image: url('../images/s-l1600.jpg');
+  background-image: url('../images/2423.jpg');
   background-size: cover;
   height: 300px;
   display: flex;
@@ -24,18 +24,23 @@ body {
   align-items: center;
 }
 
-h1 {
-  background-color: rgb(92, 44, 44);
+h1, p {
+  background-color: rgb(116, 35, 35);
   width: 100%;
-  height: 175px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-}
+  margin: 0;
+  border-radius: 10px;
 
+  
+}
 p {
-  text-align: center;
+  position: relative;
+  bottom: 35px;
+
 }
 
 #menu__toggle {
@@ -143,8 +148,8 @@ main {
   width: 100%;
 }
 
-.book-info{
-  color:cornsilk;
+.book-info {
+  color: cornsilk;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -184,11 +189,42 @@ main {
   right: 0;
   max-height: 100%;
   transform: translateY(101%);
-  
+
   opacity: 0%;
 }
 
 .book:hover .overview {
   transform: translateY(0);
   opacity: 100%;
+}
+
+.title {
+  font-size: 35px;
+  color: #000000;
+}
+
+.search {
+  padding: 5px;
+  margin: 5px;
+  overflow: hidden;
+  background-color: transparent;
+}
+
+input {
+  font-size: 30px;
+}
+
+.searchBtn {
+  float: right;
+  padding: 5px;
+  margin: 5px;
+  margin-top: 5px;
+  background: rgb(184, 184, 184);
+  font-size: 25px;
+  border: #222222;
+  cursor: pointer;
+}
+
+.genre-buttons {
+
 }
