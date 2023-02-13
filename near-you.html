@@ -7,7 +7,9 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/purecss@3.0.0/build/pure-min.css"
           integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
         <link rel="stylesheet" href="assets/css/style.css">
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBk07EuxxxkGV7Jp9t1Ak3-md99pcmRyj4&libraries=places&callback=initMap" defer></script>
     <title>Bookstores near you</title>
 </head>
 <body>
@@ -27,8 +29,9 @@
     <div class="header3">
       <h1>Find Stores here!</h1>
 
+      <div id="map"></div>
+
     </div>
+    <script src="./assets/js/script.js"></script>
 </body>
 </html>
-
-AIzaSyBk07EuxxxkGV7Jp9t1Ak3-md99pcmRyj4

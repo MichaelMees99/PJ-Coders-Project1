@@ -113,3 +113,15 @@ genreButtonsEl.addEventListener('click', buttonClickHandler);
 //book rating: items[0].volumeInfo.averageRating
 //book genre: items[0].volumeInfo.categories
 //book author: items[0].volumeInfo.authors[0]
+
+//CKC adding Maps API
+
+var map;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById("map"), {
+    center: { lat: -34.397, lng: 150.644 },
+    zoom: 8
+  
+  });
+}

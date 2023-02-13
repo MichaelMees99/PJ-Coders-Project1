@@ -256,3 +256,12 @@ opacity: 1;
 .genre-buttons {
 
 }
+
+/* Set the size of the div element that contains the map */
+#map {
+  height: 80%;
+  
+  width: 80%;
+  margin: auto;
+}
+
