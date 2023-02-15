@@ -1,36 +1,33 @@
 // Define the base URL for the Google Books API
-const baseUrl = "https://www.googleapis.com/books/v1/volumes";
+var baseUrl = "https://www.googleapis.com/books/v1/volumes";
 
 // Get the HTML elements where you want to display the search results
-const searchForm = document.getElementById("search-form");
-const searchInput = document.getElementById("search-input");
-const searchResults = document.getElementById("search-results");
-const savedBooksContainer = document.getElementById("saved-books");
-const getSavedBooks = document.getElementById("get-saved-books");
+var searchForm = document.getElementById("search-form");
+var searchInput = document.getElementById("search-input");
+var searchResults = document.getElementById("search-results");
+var savedBooksContainer = document.getElementById("saved-books");
+var getSavedBooks = document.getElementById("get-saved-books");
 
 //Define a function to save a book to local storage
 function saveBook(book) {
-  const savedBooks = JSON.parse(localStorage.getItem("savedBooks")) || []; // Get saved books from local storage or create an empty array
+  var savedBooks = JSON.parse(localStorage.getItem("savedBooks")) || []; // Get saved books from local storage or create an empty array
   savedBooks.push(book); // Add the new book to the saved books array
   localStorage.setItem("savedBooks", JSON.stringify(savedBooks)); // Save the updated saved books array to local storage
 }
 
-//fetch search results from the Google Books API and create cards
+//this function searches books and creates the cards for display
 function searchBooks(query) {
-  // Create's a URL with the original API URL and the search query
-  const url = `${baseUrl}?q=${query}&maxResults=32&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM`;
+  var url = `${baseUrl}?q=${query}&maxResults=32&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM`;
 
-  // Fetch the search results from the API
   fetch(url)
     .then((response) => response.json())
     .then((data) => {
       console.log(data)
-      // Clears the previous search results
+      //This Clears the previous search results
       searchResults.innerHTML = "";
 
-      // Loop through the items in the search results and create HTML elements for each book
+      //this Loops through the items in the search results and create HTML elements for each book
       data.items.forEach((item) => {
-        // Create HTML elements for the book's title, author, and thumbnail image
         var title = document.createElement("h2");
         title.textContent = item.volumeInfo.title;
         title.classList.add("book-title");
@@ -40,7 +37,6 @@ function searchBooks(query) {
         author.classList.add("book-author");
 
         var description = document.createElement("p");
-        // limits description to 150 characters
         description.textContent = item.volumeInfo.description ? item.volumeInfo.description.substring(0, 150) + "..." : "No description available";
         description.classList.add("book-description");
 
@@ -49,7 +45,7 @@ function searchBooks(query) {
         thumbnail.alt = item.volumeInfo.title;
         thumbnail.classList.add("book-cover");
         
-        // Create a container element for the book's information
+        //This reates a container element for the book's information
         var bookInfo = document.createElement("div");
         bookInfo.classList.add("book-info");
         bookInfo.appendChild(title);
@@ -61,22 +57,76 @@ function searchBooks(query) {
           saveButton.textContent = "Save for later";
           saveButton.classList.add("book-save-button");
           saveButton.addEventListener("click", () => {
-            saveBook(item); // Save the book to local storage when the save button is clicked
+            saveBook(item); 
           });
           bookInfo.appendChild(saveButton);
 
-        // Create a container element for the book's thumbnail image and information
         var bookCard = document.createElement("div");
         bookCard.classList.add("book-card");
         bookCard.appendChild(thumbnail);
         bookCard.appendChild(bookInfo);
 
-        // Add the book container element to the search results
+        searchResults.appendChild(bookCard);
+
+        bookCard.addEventListener("click", () => {
+          createBookModal(item);
+        });
         searchResults.appendChild(bookCard);
       });
     })
     .catch((error) => console.error(error));
 };
+
+function createBookModal(book) {
+  var title = document.createElement("h2");
+  title.textContent = book.volumeInfo.title;
+  title.classList.add("book-title");
+
+  var author = document.createElement("p");
+  author.textContent = book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : "Unknown author";
+  author.classList.add("book-author");
+
+  var description = document.createElement("p");
+  description.textContent = book.volumeInfo.description || "No description available";
+  description.classList.add("book-description");
+
+  var thumbnail = document.createElement("img");
+  thumbnail.src = book.volumeInfo.imageLinks?.thumbnail || "https://via.placeholder.com/128x192?text=No+Image";
+  thumbnail.alt = book.volumeInfo.title;
+  thumbnail.classList.add("book-cover");
+
+  var bookInfo = document.createElement("div");
+  bookInfo.classList.add("book-info");
+  bookInfo.appendChild(title);
+  bookInfo.appendChild(author);
+  bookInfo.appendChild(description);
+  bookInfo.appendChild(thumbnail);
+
+  var modalContent = document.createElement("div");
+  modalContent.classList.add("modal-content");
+  modalContent.appendChild(bookInfo);
+
+  var modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.appendChild(modalContent);
+
+
+  var closeButton = document.createElement("span");
+  closeButton.classList.add("close-button");
+  closeButton.innerHTML = "&times;";
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+  modalContent.appendChild(closeButton);
+
+
+  modal.style.display = "block";
+
+
+  document.body.appendChild(modal);
+}
+
+
 
 function displaySavedBooks() {
   console.log(displaySavedBooks)
@@ -86,9 +136,9 @@ function displaySavedBooks() {
   // Clear the previous saved books
   savedBooksContainer.innerHTML = "";
 
-  // Loop through the saved books and create HTML elements for each book
+
   savedBooks.forEach((book) => {
-    // Create HTML elements for the book's title, author, and thumbnail image
+
     var title = document.createElement("h2");
     title.textContent = book.title;
     title.classList.add("book-title");
@@ -166,5 +216,4 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8
-  })};
-
+})};
