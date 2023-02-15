@@ -228,3 +228,9 @@ input {
 .genre-buttons {
 
 }
+
+
+#map {
+  height: 500px;
+  width: 80%;
+}

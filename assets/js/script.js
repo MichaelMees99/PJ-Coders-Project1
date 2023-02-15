@@ -97,3 +97,17 @@ genreButtonsEl.addEventListener('click', buttonClickHandler);
 //book rating: items[0].volumeInfo.averageRating
 //book genre: items[0].volumeInfo.categories
 //book author: items[0].volumeInfo.authors[0]
+
+//Google API Code
+
+function initMap() {
+
+  var options = {
+    center: {lat: 33.7488 , lng:-84.3877 },
+    zoom: 10
+  }
+
+  map = new google.maps.Map(document.getElementById("map"),options)
+    
+  }
+
