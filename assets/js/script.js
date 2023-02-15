@@ -73,10 +73,70 @@ function searchBooks(query) {
 
         // Add the book container element to the search results
         searchResults.appendChild(bookCard);
+
+        bookCard.addEventListener("click", () => {
+          createBookModal(item);
+        });
+        searchResults.appendChild(bookCard);
       });
     })
     .catch((error) => console.error(error));
 };
+
+function createBookModal(book) {
+  // this createsthe  HTML elements for the book's title, author, description, and image for the modal
+  var title = document.createElement("h2");
+  title.textContent = book.volumeInfo.title;
+  title.classList.add("book-title");
+
+  var author = document.createElement("p");
+  author.textContent = book.volumeInfo.authors ? book.volumeInfo.authors.join(", ") : "Unknown author";
+  author.classList.add("book-author");
+
+  var description = document.createElement("p");
+  description.textContent = book.volumeInfo.description || "No description available";
+  description.classList.add("book-description");
+
+  var thumbnail = document.createElement("img");
+  thumbnail.src = book.volumeInfo.imageLinks?.thumbnail || "https://via.placeholder.com/128x192?text=No+Image";
+  thumbnail.alt = book.volumeInfo.title;
+  thumbnail.classList.add("book-cover");
+
+  // Create a container element for the book's information
+  var bookInfo = document.createElement("div");
+  bookInfo.classList.add("book-info");
+  bookInfo.appendChild(title);
+  bookInfo.appendChild(author);
+  bookInfo.appendChild(description);
+  bookInfo.appendChild(thumbnail);
+
+  // Create a container element for the modal dialog
+  var modalContent = document.createElement("div");
+  modalContent.classList.add("modal-content");
+  modalContent.appendChild(bookInfo);
+
+  // Create a container element for the modal dialog and add the modal content to it
+  var modal = document.createElement("div");
+  modal.classList.add("modal");
+  modal.appendChild(modalContent);
+
+  // Add a close button to the modal
+  var closeButton = document.createElement("span");
+  closeButton.classList.add("close-button");
+  closeButton.innerHTML = "&times;";
+  closeButton.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+  modalContent.appendChild(closeButton);
+
+  // Display the modal dialog
+  modal.style.display = "block";
+
+  // Add the modal dialog to the page
+  document.body.appendChild(modal);
+}
+
+
 
 function displaySavedBooks() {
   console.log(displaySavedBooks)
@@ -151,4 +211,4 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8
-  })};
+})};
