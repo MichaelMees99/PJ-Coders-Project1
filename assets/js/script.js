@@ -57,7 +57,7 @@ function searchBooks(query) {
           saveButton.textContent = "Save for later";
           saveButton.classList.add("book-save-button");
           saveButton.addEventListener("click", () => {
-            saveBook(item); 
+          saveBook(item); 
           });
           bookInfo.appendChild(saveButton);
 
@@ -68,7 +68,7 @@ function searchBooks(query) {
 
         searchResults.appendChild(bookCard);
 
-        bookCard.addEventListener("click", () => {
+        thumbnail.addEventListener("click", () => {
           createBookModal(item);
         });
         searchResults.appendChild(bookCard);
