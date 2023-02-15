@@ -3,20 +3,23 @@ body {
 }
 
 #search-ask {
-  background-color: rgb(116, 35, 35);
-  width: 500%;
-  height: 100px;
+  color: #fff;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  margin: 0;
-  border-radius: 10px;
+  font-family: 'Comfortaa';
+  font-size: 20px;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
 }
 
-/* Set the background color of the header to dark red */
+
 header {
-  background-image: url('../images/2423.jpg');
+  background-image: url('../images/library\ on\ water.png');
   background-size: cover;
   height: 300px;
   display: flex;
@@ -29,6 +32,19 @@ header {
 
 .head {
   color: aliceblue;
+}
+
+#website-title {
+  color: antiquewhite;
+  border-radius: 5px;
+  font-family: 'Comfortaa';
+  font-size: 50px;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+
 }
 
 .book-card {
@@ -78,20 +94,22 @@ header {
   width: 100%;
   max-width: 300px;
   background-color: #fff;
-  border: 1px solid #ccc;
+  border: 1px solid #63a2f5;
   border-radius: 4px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin: 10px;
+  transition: all .2s ease-in-out;
 }
 
 .book-card:hover {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.03);
 }
 
 /* Style for the book cover image */
 .book-cover {
   width: 100%;
-  height: 200px;
+  height: 300px;
   object-fit: cover;
   border-top-left-radius: 4px;
   border-top-right-radius: 4px;
@@ -202,11 +220,13 @@ header {
 #menu__toggle:checked+.menu__btn>span::before {
   top: 0;
   transform: rotate(0deg);
+  background-color: #007bff;
 }
 
 #menu__toggle:checked+.menu__btn>span::after {
   top: 0;
   transform: rotate(90deg);
+  background-color: #007bff;
 }
 
 #menu__toggle:checked~.menu__box {
@@ -217,10 +237,9 @@ header {
   position: fixed;
   top: 20px;
   left: 20px;
-  width: 26px;
+  width: 50px;
   height: 26px;
   cursor: pointer;
-  z-index: 1;
   z-index: 3;
 }
 
@@ -231,7 +250,7 @@ header {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #616161;
+  background-color: #007bff;
   transition-duration: .25s;
   z-index: 3;
 }
@@ -258,7 +277,8 @@ header {
   margin: 0;
   padding: 80px 0;
   list-style: none;
-  background-color: #343435;
+  background-color: rgb(0, 0, 0);
+  border-radius: 2px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
   transition-duration: .25s;
   z-index: 2;
@@ -268,15 +288,20 @@ header {
   display: block;
   padding: 12px 24px;
   color: aliceblue;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-family: 'Comfortaa';
+  font-size: 25px;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
   font-weight: 600;
   text-decoration: none;
   transition-duration: .25s;
 }
 
 .menu__item:hover {
-  background-color: #694343;
+  background-color: #6885cf;
 }
 
 .book-save-button  {
