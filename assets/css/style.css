@@ -399,6 +399,7 @@ header {
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
+  z-index: 2;
 }
 
 .book-save-button:hover,
