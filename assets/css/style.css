@@ -408,6 +408,15 @@ header {
   color: #FF4742;
 }
 
+
+
+#map {
+  height: 600px;
+  width: 100%;
+  
+}
+
 .book-save-button:active {
   opacity: .5;
 }
+
