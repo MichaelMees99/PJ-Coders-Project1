@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html>
 <head>
+  <link href='https://fonts.googleapis.com/css?family=Comfortaa' rel='stylesheet'>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,10 +9,20 @@
     integrity="sha384-X38yfunGUhNzHpBaEBsWLO+A0HDYOQi8ufWDkZ0k9e0eXz/tH3II7uKZ9msv++Ls" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/style.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-  <title>My Library</title>
+  <title>PJ Books</title>
 </head>
+<header>
+
+  <h1 id="website-title">PJ BOOKS</h1>
+  
+  <form id="search-form">
+    <label id="saved-header" class="saved-header" for="saved-header">Explore your saved books below!</label>
+  </form>
+
+</header>
 
 <body>
+  
   <div class="hamburger-menu">
     <input id="menu__toggle" type="checkbox" />
     <label class="menu__btn" for="menu__toggle">
@@ -22,22 +32,12 @@
       <ul>
         <li><a class="menu__item" href="index.html">Home</a></li>
         <li><a class="menu__item" href="read-later.html">Read Later</a></li>
-        <li><a class="menu__item" href="near-you.html">Near You</a></li>
+        <li><a class="menu__item" href="near-you.html">Find Stores</a></li>
       </ul>
-    </ul>
-  </div>
-
-  <div id="search-container">
-    <form id="search-form">
-      <label for="search-input">Search for books:</label>
-      <input type="text" id="search-input" required>
-      <button type="submit">Search</button>
-    </form>
-    <div id="search-results"></div>
   </div>
   
   <div id="saved-books-container">
-    <h2>Saved Books</h2>
+    <h2></h2>
     <div id="saved-books"></div>
   </div>
 

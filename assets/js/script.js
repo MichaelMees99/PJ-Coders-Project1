@@ -15,9 +15,9 @@ function saveBook(book) {
   localStorage.setItem("savedBooks", JSON.stringify(savedBooks)); // Save the updated saved books array to local storage
 }
 
-// Define a function to fetch search results from the Google Books API
+//fetch search results from the Google Books API and create cards
 function searchBooks(query) {
-  // Create a URL with the search query and the API key (replace YOUR_API_KEY with your actual API key)
+  // Create's a URL with the original API URL and the search query
   const url = `${baseUrl}?q=${query}&maxResults=32&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM`;
 
   // Fetch the search results from the API
@@ -25,38 +25,39 @@ function searchBooks(query) {
     .then((response) => response.json())
     .then((data) => {
       console.log(data)
-      // Clear the previous search results
+      // Clears the previous search results
       searchResults.innerHTML = "";
 
       // Loop through the items in the search results and create HTML elements for each book
       data.items.forEach((item) => {
         // Create HTML elements for the book's title, author, and thumbnail image
-        const title = document.createElement("h2");
+        var title = document.createElement("h2");
         title.textContent = item.volumeInfo.title;
         title.classList.add("book-title");
 
-        const author = document.createElement("p");
+        var author = document.createElement("p");
         author.textContent = item.volumeInfo.authors ? item.volumeInfo.authors.join(", ") : "Unknown author";
         author.classList.add("book-author");
 
-        const description = document.createElement("p");
+        var description = document.createElement("p");
+        // limits description to 150 characters
         description.textContent = item.volumeInfo.description ? item.volumeInfo.description.substring(0, 150) + "..." : "No description available";
         description.classList.add("book-description");
 
-        const thumbnail = document.createElement("img");
+        var thumbnail = document.createElement("img");
         thumbnail.src = item.volumeInfo.imageLinks?.thumbnail || "https://via.placeholder.com/128x192?text=No+Image";
         thumbnail.alt = item.volumeInfo.title;
         thumbnail.classList.add("book-cover");
         
         // Create a container element for the book's information
-        const bookInfo = document.createElement("div");
+        var bookInfo = document.createElement("div");
         bookInfo.classList.add("book-info");
         bookInfo.appendChild(title);
         bookInfo.appendChild(author);
         bookInfo.appendChild(description);
 
         // Create a save button for the book
-          const saveButton = document.createElement("button");
+          var saveButton = document.createElement("button");
           saveButton.textContent = "Save for later";
           saveButton.classList.add("book-save-button");
           saveButton.addEventListener("click", () => {
@@ -65,7 +66,7 @@ function searchBooks(query) {
           bookInfo.appendChild(saveButton);
 
         // Create a container element for the book's thumbnail image and information
-        const bookCard = document.createElement("div");
+        var bookCard = document.createElement("div");
         bookCard.classList.add("book-card");
         bookCard.appendChild(thumbnail);
         bookCard.appendChild(bookInfo);
@@ -80,7 +81,7 @@ function searchBooks(query) {
 function displaySavedBooks() {
   console.log(displaySavedBooks)
   // Retrieve the saved books from wherever they are stored (e.g. a database or local storage)
-  const savedBooks = getSavedBooks(); // Implement this function to retrieve the saved books
+  var savedBooks = getSavedBooks(); // Implement this function to retrieve the saved books
 
   // Clear the previous saved books
   savedBooksContainer.innerHTML = "";
@@ -88,7 +89,7 @@ function displaySavedBooks() {
   // Loop through the saved books and create HTML elements for each book
   savedBooks.forEach((book) => {
     // Create HTML elements for the book's title, author, and thumbnail image
-    const title = document.createElement("h2");
+    var title = document.createElement("h2");
     title.textContent = book.title;
     title.classList.add("book-title");
 
