@@ -1,110 +1,72 @@
-var bookFormEl = document.querySelector('#book-form');
-var genreButtonsEl = document.querySelector('#genre-buttons');
-var titleInputEl = document.querySelector('#title');
-var bookContainerEl = document.querySelector('#book-container');
-var bookSearchTerm = document.querySelector('#book-search-term');
+// Define the base URL for the Google Books API
+const baseUrl = "https://www.googleapis.com/books/v1/volumes";
 
+// Get the HTML elements where you want to display the search results
+const searchForm = document.getElementById("search-form");
+const searchInput = document.getElementById("search-input");
+const searchResults = document.getElementById("search-results");
 
-var formSubmitHandler = function (event) {
-  event.preventDefault();
+// Define a function to fetch search results from the Google Books API
+function searchBooks(query) {
+  // Create a URL with the search query and the API key (replace YOUR_API_KEY with your actual API key)
+  const url = `${baseUrl}?q=${query}&maxResults=32&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM`;
 
-  var bookName = titleInputEl.value.trim();
+  // Fetch the search results from the API
+  fetch(url)
+    .then((response) => response.json())
+    .then((data) => {
+      // Clear the previous search results
+      searchResults.innerHTML = "";
 
-  if (bookName) {
-    getBookTitles(bookName);
+      // Loop through the items in the search results and create HTML elements for each book
+      data.items.forEach((item) => {
+        // Create HTML elements for the book's title, author, and thumbnail image
+        const title = document.createElement("h2");
+        title.textContent = item.volumeInfo.title;
+        title.classList.add("book-title");
 
-    bookContainerEl.textContent = '';
-    titleInputEl.value = '';
-  } else {
-    alert('Please enter a book Title');
-  }
-};
+        const author = document.createElement("p");
+        author.textContent = item.volumeInfo.authors ? item.volumeInfo.authors.join(", ") : "Unknown author";
+        author.classList.add("book-author");
 
-var buttonClickHandler = function (event) {
-  // `event.target` is a reference to the DOM element of what programming language button was clicked on the page
-  var genre = event.target.getAttribute('data-genre');
+        const description = document.createElement("p");
+        description.textContent = item.volumeInfo.description ? item.volumeInfo.description.substring(0, 150) + "..." : "No description available";
+        description.classList.add("book-description");
 
-  // If there is no language read from the button, don't attempt to fetch repos
-  if (genre) {
-    getBookGenre(genre);
+        const thumbnail = document.createElement("img");
+        thumbnail.src = item.volumeInfo.imageLinks?.thumbnail || "https://via.placeholder.com/128x192?text=No+Image";
+        thumbnail.alt = item.volumeInfo.title;
+        thumbnail.classList.add("book-cover");
 
-    repoContainerEl.textContent = '';
-  }
-};
+        // Create a container element for the book's information
+        const bookInfo = document.createElement("div");
+        bookInfo.classList.add("book-info");
+        bookInfo.appendChild(title);
+        bookInfo.appendChild(author);
+        bookInfo.appendChild(description);
 
-var getBookTitles = function (bookTitle) {
-  var apiUrl = 'https://www.googleapis.com/books/v1/volumes?q=' + bookTitle + '&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM';
+        // Create a container element for the book's thumbnail image and information
+        const bookCard = document.createElement("div");
+        bookCard.classList.add("book-card");
+        bookCard.appendChild(thumbnail);
+        bookCard.appendChild(bookInfo);
 
-  fetch(apiUrl)
-    .then(function (response) {
-      if (response.ok) {
-        console.log(response);
-        response.json().then(function (data) {
-          console.log(data);
-            displayBooks(data, bookTitle);
-        });
-      } else {
-        alert('Error: ' + response.statusText);
-      }
-    })
-    .catch(function (error) {
-      alert('Unable to connect to GoogleBooks');
-    });
-};
-
-var getBookGenre = function (genre) {
-  // The `q` parameter is what genre we want to query, the `+is:featured` flag adds a filter to return only featured repositories
-  // The `sort` parameter will instruct GitHub to respond with all of the repositories in order by the number of issues needing help
-  var apiUrl = 'https://www.googleapis.com/books/v1/volumes?q=subject:' + genre + '&key=AIzaSyAAbz3cC9JqWTs8EhHObj34287KYDMQWpM';
-
-  fetch(apiUrl).then(function (response) {
-    if (response.ok) {
-      response.json().then(function (data) {
-        displayBooks(data.items, genre);
+        // Add the book container element to the search results
+        searchResults.appendChild(bookCard);
       });
-    } else {
-      alert('Error: ' + response.statusText);
-    }
-  });
-};
+    })
+    .catch((error) => console.error(error));
+}
 
-var displayBooks = function (items, searchTerm) {
-  if (items.length === 0) {
-    bookContainerEl.textContent = 'No books found.';
-    // Without a `return` statement, the rest of this function will continue to run and perhaps throw an error if `repos` is empty
-    return;
-  }
+// Handle the form submission to search for books
+searchForm.addEventListener("submit", (event) => {
+  event.preventDefault(); // Prevent the form from submitting
 
-  bookSearchTerm.textContent = searchTerm;
+  const query = searchInput.value; // Get the search query from the input field
+  searchBooks(query); // Call the searchBooks function with the search query
+});
 
-  for (var i = 0; i < items.length; i++) {
 
-    var bookName = items[i].volumeInfo.title;
-    var bookImage = items[i].volumeInfo.imageLinks.thumbnail;
-    var bookAuthor = items[i].volumeInfo.authors[0];
-
-    var booksEl = document.createElement('div');
-    booksEl.classList = 'list-item flex-row justify-space-between align-center';
-
-    var imageEl = document.createElement('img');
-    imageEl.src = bookImage;
-
-    var titleEl = document.createElement('span');
-    titleEl.textContent = bookName;
-
-    booksEl.appendChild(titleEl);
-    booksEl.appendChild(imageEl);
-
-    var statusEl = document.createElement('span');
-    statusEl.classList = 'flex-row align-center';
-
-    booksEl.appendChild(statusEl);
-
-    bookContainerEl.appendChild(booksEl);
-  }
-};
-bookFormEl.addEventListener('submit', formSubmitHandler);
-genreButtonsEl.addEventListener('click', buttonClickHandler);
 
 //resources:
 //book title info: items[0].volumeInfo.title
@@ -122,6 +84,4 @@ function initMap() {
   map = new google.maps.Map(document.getElementById("map"), {
     center: { lat: -34.397, lng: 150.644 },
     zoom: 8
-  
-  });
-}
+  })};
