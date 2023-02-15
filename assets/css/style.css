@@ -1,19 +1,40 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
 body {
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  margin: 0;
-  color: aliceblue;
   background-color: #222222;
-
 }
 
-.header {
-  background-image: url('../images/2423.jpg');
+#search-ask {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Comfortaa';
+  font-size: 20px;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.saved-header {
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: 'Comfortaa';
+  font-size: 40px;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+
+header {
+  background-image: url('../images/library\ on\ water.png');
   background-size: cover;
   height: 300px;
   display: flex;
@@ -24,24 +45,241 @@ body {
   align-items: center;
 }
 
-h1, p {
-  background-color: rgb(116, 35, 35);
+.head {
+  color: aliceblue;
+}
+
+#website-title {
+  color: antiquewhite;
+  border-radius: 5px;
+  font-family: 'Comfortaa';
+  font-size: 50px;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+
+}
+
+.book-card {
+  position: relative;
+  display: inline-block;
+}
+
+
+.book-card .description-tooltip {
+  visibility: hidden;
+  width: 250px;
+  background-color: #555;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -125px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+
+.book-card:hover .description-tooltip {
+  visibility: visible;
+  opacity: 1;
+}
+
+
+.book-card .description-tooltip::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: #555 transparent transparent transparent;
+}
+
+.book-card {
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  height: 100px;
+  max-width: 300px;
+  background-color: #fff;
+  border: 1px solid #63a2f5;
+  border-radius: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+  transition: all .2s ease-in-out;
+}
+
+.book-card:hover {
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+  transform: scale(1.03);
+}
+
+
+.book-cover {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+
+
+.book-info {
+  padding: 10px;
+}
+
+
+.book-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin: 0 0 10px;
+}
+
+.book-author {
+  font-size: 16px;
+  margin: 0 0 10px;
+}
+
+
+.book-description {
+  font-size: 14px;
+  margin: 0;
+}
+
+
+#search-form {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+}
+
+#search-input {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem 0 0 0.5rem;
+  font-size: 1rem;
+  flex: 1;
+}
+
+#search-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 0 0.5rem 0.5rem 0;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+}
+
+
+#search-results {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+
+.book-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease-in-out;
+}
+
+.book-container:hover {
+  transform: translateY(-0.25rem);
+}
+
+
+.book-thumbnail {
+  height: 300px;
+  object-fit: cover;
+}
+
+
+.book-info {
+  padding: 1rem;
+  background-color: #fff;
+  flex: 1;
+}
+
+.book-title {
+  margin: 0 0 1rem;
+  font-size: 1.5rem;
+}
+
+.book-author {
+  margin: 0;
+  font-size: 1rem;
+  color: #666;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  right: 10xx;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.modal-content {
+  background-color: rgba(255, 255, 255, 0.403);
+  padding: 20px;
+  max-width: 500px;
   text-align: center;
+}
+
+.book-info {
   margin: 0;
-  border-radius: 10px;
-
-  
+  padding: 0;
 }
-p {
-  position: relative;
-  bottom: 35px;
 
+.book-title {
+  font-size: 24px;
+  margin-bottom: 10px;
 }
+
+.book-author {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.book-description {
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.book-cover {
+  width: 100%;
+  max-width: 200px;
+  margin-bottom: 10px;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #007bff;
+}
+
 
 #menu__toggle {
   opacity: 0;
@@ -54,11 +292,13 @@ p {
 #menu__toggle:checked+.menu__btn>span::before {
   top: 0;
   transform: rotate(0deg);
+  background-color: #007bff;
 }
 
 #menu__toggle:checked+.menu__btn>span::after {
   top: 0;
   transform: rotate(90deg);
+  background-color: #007bff;
 }
 
 #menu__toggle:checked~.menu__box {
@@ -69,10 +309,10 @@ p {
   position: fixed;
   top: 20px;
   left: 20px;
-  width: 26px;
+  width: 50px;
   height: 26px;
   cursor: pointer;
-  z-index: 1;
+  z-index: 3;
 }
 
 .menu__btn>span,
@@ -82,18 +322,21 @@ p {
   position: absolute;
   width: 100%;
   height: 2px;
-  background-color: #616161;
+  background-color: #007bff;
   transition-duration: .25s;
+  z-index: 3;
 }
 
 .menu__btn>span::before {
   content: '';
   top: -8px;
+  z-index: 3;
 }
 
 .menu__btn>span::after {
   content: '';
   top: 8px;
+  z-index: 3;
 }
 
 .menu__box {
@@ -106,125 +349,75 @@ p {
   margin: 0;
   padding: 80px 0;
   list-style: none;
-  background-color: #343435;
+  background-color: rgb(0, 0, 0);
+  border-radius: 2px;
   box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
   transition-duration: .25s;
+  z-index: 2;
 }
 
 .menu__item {
   display: block;
   padding: 12px 24px;
   color: aliceblue;
-  font-family: 'Roboto', sans-serif;
-  font-size: 20px;
+  font-family: 'Comfortaa';
+  font-size: 25px;
+  text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
   font-weight: 600;
   text-decoration: none;
   transition-duration: .25s;
 }
 
 .menu__item:hover {
-  background-color: #694343;
+  background-color: #6885cf;
 }
 
-:root {
-  --primary-color: #22254b;
-  --secondary-color: #373b69;
-}
-
-main {
-  display: flex;
-  flex-wrap: wrap;
-}
-
-.book {
-  width: 300px;
-  margin: 1rem;
-  background-color: var(--secondary-color);
-  box-shadow: 0 4px 5px black;
-  position: relative
-}
-
-.book img {
-  width: 100%;
-}
-
-.book-info {
-  color: cornsilk;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0.5rem 1rem 1rem;
-  letter-spacing: .5px;
-}
-
-.book-info h3 {
-  margin-top: 0;
-}
-
-.book-info span {
-  background-color: var(--primary-color);
-  padding: 0.25rem 0.5rem;
-  border-radius: 3px;
-  font-weight: bold;
-}
-
-.book-info span.green {
-  color: green;
-}
-
-.book-info span.orange {
-  color: orange;
-}
-
-.book-info span.red {
-  color: red;
-}
-
-.overview {
-  background-color: white;
-  padding: 2rem;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  max-height: 100%;
-  transform: translateY(101%);
-
-  opacity: 0%;
-}
-
-.book:hover .overview {
-  transform: translateY(0);
-  opacity: 100%;
-}
-
-.title {
-  font-size: 35px;
-  color: #000000;
-}
-
-.search {
-  padding: 5px;
-  margin: 5px;
-  overflow: hidden;
-  background-color: transparent;
-}
-
-input {
-  font-size: 30px;
-}
-
-.searchBtn {
-  float: right;
-  padding: 5px;
-  margin: 5px;
-  margin-top: 5px;
-  background: rgb(184, 184, 184);
-  font-size: 25px;
-  border: #222222;
+.book-save-button  {
+  background: #973430;
+  border: 1px solid #973430;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  box-sizing: border-box;
+  color: #FFFFFF;
   cursor: pointer;
+  display: inline-block;
+  font-family: nunito,roboto,proxima-nova,"proxima nova",sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 40px;
+  outline: 0;
+  padding: 12px 14px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+  z-index: 2;
 }
 
-.genre-buttons {
-
+.book-save-button:hover,
+.book-save-button:active {
+  background-color: initial;
+  background-position: 0 0;
+  color: #FF4742;
 }
+
+
+
+#map {
+  height: 600px;
+  width: 100%;
+  
+}
+
+.book-save-button:active {
+  opacity: .5;
+}
+
