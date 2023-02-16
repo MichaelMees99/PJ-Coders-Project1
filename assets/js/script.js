@@ -37,7 +37,7 @@ function searchBooks(query) {
         author.classList.add("book-author");
 
         var description = document.createElement("p");
-        description.textContent = item.volumeInfo.description ? item.volumeInfo.description.substring(0, 150) + "..." : "No description available";
+        description.textContent = item.volumeInfo.description ? item.volumeInfo.description.substring(0, 250) + "..." : "No description available";
         description.classList.add("book-description");
 
         var thumbnail = document.createElement("img");
@@ -93,7 +93,7 @@ function createBookModal(book) {
   var thumbnail = document.createElement("img");
   thumbnail.src = book.volumeInfo.imageLinks?.thumbnail || "https://via.placeholder.com/128x192?text=No+Image";
   thumbnail.alt = book.volumeInfo.title;
-  thumbnail.classList.add("book-cover");
+  thumbnail.classList.add("book-cover2");
 
   var bookInfo = document.createElement("div");
   bookInfo.classList.add("book-info");
